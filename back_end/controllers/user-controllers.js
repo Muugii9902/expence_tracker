@@ -1,17 +1,40 @@
 const sql = require("../config/postgres");
 
 const getAllUser= async(req,res)=>{
-    const data= await sql`SELECT * FROM employees`;
+    const data= await sql`SELECT * FROM users`;
     console.log("DATA",data)
     res.status(200).json({message:"bolson",user:data})
 };
-const creatUser =()=>{};
-const updateUser=()=>{}
+const createUser = async(req,res)=>{
+    const { email, name, password, profile_img } = req.body;
+    const data = await sql`
+    INSERT INTO users (email, name, password, profile_img)
+    VALUES(${email}, ${name}, ${password},${profile_img});
+    `;
+    console.log("DATA", data);
+  res.status(201).json({ message: "New use created successfully" });
+};
+
+    
+
+const updateUser= async(req,res)=>{
+    const {id}=req.params;
+    const{emall,name,password,profile_img}=req.body;
+    const data = await sql `UPDATE users
+    SET emall=${emall},name=${name},password=${password},profile_img=${profile_img}
+    WHERE id=${id}`;
+    console.log("DATA",data);
+     res.status(200).json({message:"Update successful",user:data[0]})
+    
+}
+
+
+
 const deleteUser=async(req,res)=>{
     const id = req.params
-    const data= await sql`DELETE  FROM employees WHERE eid=${id}`;
+    const data= await sql`DELETE  FROM employees WHERE id=${id}`;
     console.log("DATA",data)
     res.status(200).json({message:"delete",user:data})
 }
 
-module.exports ={getAllUser,creatUser,updateUser,deleteUser};
+module.exports ={getAllUser,createUser,updateUser,deleteUser};
