@@ -5,7 +5,7 @@ import Load from "./components/load";
 export default function Home() {
   return (
     <main>
-      <Load />
+      <LogIn />
     </main>
   );
 }
