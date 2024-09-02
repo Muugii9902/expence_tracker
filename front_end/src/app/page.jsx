@@ -4,7 +4,7 @@ import Load from "./components/load";
 
 export default function Home() {
   return (
-    <main className="w-full h-screen bg-slate-400">
+    <main>
       <Load />
     </main>
   );
