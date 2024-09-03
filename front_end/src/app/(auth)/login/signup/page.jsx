@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "@/utils/util";
 
 const SignUp = () => {
   const router = useRouter();
@@ -47,11 +48,9 @@ const SignUp = () => {
 
     try {
       const response = await fetch(`${apiUrl}/auth/signup`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ email, name, password }),
+        email,
+        name,
+        password,
       });
 
       if (response.status === 201) {
