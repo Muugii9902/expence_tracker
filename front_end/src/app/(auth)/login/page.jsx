@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { apiUrl } from "../../../utils/util";
 
-
 const Login = () => {
   const router = useRouter();
   const [userData, setUserData] = useState({
@@ -19,7 +18,9 @@ const Login = () => {
     const { email, password } = userData;
 
     try {
-      const response = await axios.post(`${apiUrl}/auth/signin`, {
+      const requestUrl = `${apiUrl}/auth/signin`;
+      console.log("url", requestUrl);
+      const response = await axios.post(requestUrl, {
         email,
         password,
       });

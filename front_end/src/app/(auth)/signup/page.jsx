@@ -60,7 +60,7 @@ const SignUp = () => {
       }
     } catch (error) {
       console.error("There was an error signing up:", error);
-      toast.error("Failed to sign up. Please try again.");
+      toast.error("Faileddd to sign up. Please try again.");
     }
   };
 

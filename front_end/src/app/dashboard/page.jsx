@@ -5,6 +5,9 @@ import { UserContext } from "../context/user-context";
 import axios from "axios";
 import { apiUrl } from "../../utils/util";
 import { toast } from "react-toastify";
+import Card from "../components/dashboard/card";
+import Cart from "../components/dashboard/cart";
+import LastRecord from "../components/dashboard/lastrecords";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -27,10 +30,13 @@ const Dashboard = () => {
   }, [user.id]);
 
   return (
-    <div>
-      <div>
-        <h2>Records</h2>
-        {transactionData?.transactions?.map((transaction, index) => {
+    <div className="w-[1200px] h-full m-auto">
+      <div className="flex gap-10  ">
+        <Cart />
+        <Card />
+        <Card />
+
+        {/* {transactionData?.transactions?.map((transaction, index) => {
           return (
             <div key={index} className="flex">
               <img src="/income.svg" alt="income" />
@@ -40,7 +46,10 @@ const Dashboard = () => {
               </div>
             </div>
           );
-        })}
+        })} */}
+      </div>
+      <div className=" py-10">
+        <LastRecord />
       </div>
     </div>
   );
