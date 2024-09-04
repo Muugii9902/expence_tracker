@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { apiUrl } from "@/utils/util";
+import { apiUrl } from "../../../utils/util";
 
 const SignUp = () => {
   const router = useRouter();
@@ -19,22 +19,22 @@ const SignUp = () => {
 
   const [image, setImage] = useState(null);
 
-  const handleImageUpload = async () => {
-    if (!image) return;
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "byurziwm");
+  // const handleImageUpload = async () => {
+  //   if (!image) return;
+  //   const formData = new FormData();
+  //   formData.append("file", image);
+  //   formData.append("upload_preset", "byurziwm");
 
-    try {
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${apiUrl}/image/upload`,
-        formData
-      );
-      return response.data.secure_url;
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
+  //   try {
+  //     const response = await axios.post(
+  //       `https://api.cloudinary.com/v1_1/${apiUrl}/image/upload`,
+  //       formData
+  //     );
+  //     return response.data.secure_url;
+  //   } catch (error) {
+  //     console.error("Error uploading image:", error);
+  //   }
+  // };
 
   const signUp = async () => {
     // const imageUrl = await handleImageUpload();
@@ -48,7 +48,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch(`${apiUrl}/auth/signup`, {
+      const response = await axios.post(`${apiUrl}/auth/signup`, {
         email,
         name,
         password,

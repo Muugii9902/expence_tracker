@@ -5,7 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { apiUrl } from "../../utils/util";
+import { apiUrl } from "../../../utils/util";
+
 
 const Login = () => {
   const router = useRouter();

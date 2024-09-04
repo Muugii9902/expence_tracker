@@ -3,7 +3,7 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../context/user-context";
 import { useRouter } from "next/navigation";
-import { Header } from "../components";
+import { Header } from "../components/header/header";
 
 const Layout = ({ children }) => {
   const { user, fetchUserData } = useContext(UserContext);
