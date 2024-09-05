@@ -1,18 +1,26 @@
 import React from "react";
+import { GoDotFill } from "react-icons/go";
 
-const Card = () => {
+const Cardincome = ({ color, sumAmount, incomeAmount, arrow, change }) => {
   return (
-    <div className="card bg-base-100 w-96 shadow-xl">
-      <div className="card-body">
-        <h2 className="card-title">Your income</h2>
-        <p>amount</p>
-        <p>Your transaction_type amount</p>
-        <div className="card-actions justify-end">
-          <p>info from last month</p>
+    <div className="stats text-primary-content w-96 h-56 bg-white flex flex-col">
+      <div className="stat-title flex gap-2 items-center border-b-2 py-4 px-6">
+        <GoDotFill className={`${color}`} />
+        <span className="text-slate-900 text-base font-semibold">
+          Your income
+        </span>
+      </div>
+      <div className="stat">
+        <div className="stat-value text-black">{sumAmount}</div>
+        <p className="text-slate-500 mt-1">{incomeAmount}</p>
+
+        <div className="flex items-center gap-2 mt-4">
+          <span>{arrow}</span>
+          <span className="text-black">{change}</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default Card;
+export default Cardincome;

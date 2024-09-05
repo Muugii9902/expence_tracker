@@ -1,19 +1,22 @@
 import React from "react";
+import { LuNfc } from "react-icons/lu";
 
 const Cart = () => {
   return (
-    <div className="card bg-base-100 image-full w-96 shadow-xl">
-      <figure>
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes"
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+    <div className="card bg-[#0166FF] text-primary-content w-96 h-56 relative">
+      <img
+        src="/images/card_background.png"
+        alt=""
+        className="mix-blend-overlay opacity-40 rounded-2xl overflow-hidden object-cover"
+      />
+      <div className="card-body absolute">
+        <img src="\image\geld.png" alt="" className="w-20" />
+        <div className="flex flex-col mt-14">
+          <h6 className="text-base text-white opacity-50">Cash</h6>
+          <div className="text-2xl font-semibold text-white flex items-center gap-32">
+            <span>10,000,000</span>
+            <LuNfc />
+          </div>
         </div>
       </div>
     </div>

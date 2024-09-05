@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const Header = ({ user, logOut }) => {
   return (
-    <header className="flex items-center max-w-[1200px] mx-auto justify-between py-4">
+    <header className="flex items-center max-w-full mx-auto justify-between py-10">
       <div className="flex gap-6 items-center">
         <Image src="/Image/logo.png" width={38} height={38} alt="logo" />
         <Link href="/dashboard">
