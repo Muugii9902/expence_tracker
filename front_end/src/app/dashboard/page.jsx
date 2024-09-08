@@ -32,12 +32,13 @@ const Cardinfo = [
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
-  const [transactionData, setTransactionData] = useState([]);
+  const [transactions, setTransactions] = useState([]);
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get(`${apiUrl}/records/${user.id}`);
-      setTransactionData(res.data);
+      const res = await axios.get(`${apiUrl}/records/${uid}`);
+      console.log("guilgee", res.data.records);
+      setTransactions(res.data.records);
     } catch (error) {
       console.error(error);
       toast.error("Failed to fetch transactions");
@@ -49,6 +50,10 @@ const Dashboard = () => {
       fetchTransactions();
     }
   }, [user.id]);
+
+  // useEffect(() => {
+  //   fetchTransactions();
+  // }, [user]);
 
   return (
     <div className="w-[100%] h-full m-auto bg-slate-200">
@@ -80,6 +85,11 @@ const Dashboard = () => {
         <div className=" w-[100%] h-[400px]  border rounded-lg bg-white flex justify-between">
           <MonthChart />
           <Chart />
+        </div>
+        <div className="justify-center py-10">
+          {transactions.map((tr) => (
+            <div>{tr.name}</div>
+          ))}
         </div>
       </div>
       <div className=" px-10">

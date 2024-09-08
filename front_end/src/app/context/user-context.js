@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
       });
 
       if (response.status === 200) {
-        setUser(response.data);
+        setUser(response.data.user);
         console.log("USER", response.data);
       }
     } catch (error) {

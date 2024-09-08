@@ -12,6 +12,9 @@ export const Header = ({ user, logOut }) => {
         <Link href="/records">
           <p>Records</p>
         </Link>
+        <Link href="/records">
+          <p>{user.name}</p>
+        </Link>
       </div>
       <div className="flex gap-6 items-center">
         <button className="btn bg-[#0166FF] text-white btn-sm">Records</button>

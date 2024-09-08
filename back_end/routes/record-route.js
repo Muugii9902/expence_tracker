@@ -8,7 +8,8 @@ const {
 
 const router = Router();
 
-router.route("/").get(getAllRecords).post(createRecord);
-router.route("/:id").put(updateRecord).delete(deleteRecord);
+router.route("/").get(getAllRecords)
+// .post(createRecord);
+// router.route("/:id").put(updateRecord).delete(deleteRecord);
 
 module.exports = router;
