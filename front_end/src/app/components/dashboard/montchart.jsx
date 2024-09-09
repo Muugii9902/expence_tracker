@@ -23,20 +23,7 @@ ChartJS.register(
 const MonthChart = () => {
   // 1 сарын мэдээллийг тохируулах
   const data = {
-    labels: [
-      "1 сар",
-      "2 сар",
-      "3 сар",
-      "4 сар",
-      "5 сар",
-      "6 сар",
-      "7 сар",
-      "8 сар",
-      "9 сар",
-      "10 сар",
-      "11 сар",
-      "12 сар",
-    ],
+    labels: ["1 сар"],
     datasets: [
       {
         label: "Орлого (₮)",
@@ -45,6 +32,11 @@ const MonthChart = () => {
           2800,
         ],
         backgroundColor: "rgba(75, 192, 192, 0.6)",
+      },
+      {
+        label: "Зардал",
+        data: 9000,
+        backgroundColor: "#F87171",
       },
     ],
   };
@@ -62,7 +54,23 @@ const MonthChart = () => {
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <div className="flex items-center justify-center p-4 bg-white card">
+      {/* {barChartData && <Bar data={data1} options={options1} />} */}
+      <Bar data={data} options={options} />
+      {/* {!barChartData && (
+    <div className="flex items-end justify-center w-full gap-4 ">
+      <div className="w-4 skeleton h-14"></div>
+      <div className="w-4 h-16 skeleton"></div>
+      <div className="w-4 h-24 skeleton"></div>
+      <div className="w-4 h-24 skeleton"></div>
+      <div className="w-4 h-24 skeleton"></div>
+      <div className="w-4 h-16 skeleton"></div>
+      <div className="w-4 skeleton h-14"></div>
+    </div>
+  )} */}
+    </div>
+  );
 };
 
 export default MonthChart;

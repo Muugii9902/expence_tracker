@@ -10,7 +10,18 @@ const getAllRecords = async (req, res) => {
     res.status(500).json({ message: "Faileasad to fetch records." });
   }
 };
-
+ 
+const getInfo = async (req,res)=>{
+  try {
+    const [income,expense]= await 
+    sql`SELECT transaction_type, SUM(amount) FROM records GROUP BY transaction_type`;
+    res.status(200).json({income,expense});
+  } catch (error) {
+    res.status(400).json({message:"failed",error})
+    
+  }
+}
+ 
 // const createRecord = async (req, res) => {
 //   const { name, amount, transaction_type, description } = req.body;
 
@@ -73,6 +84,7 @@ const getAllRecords = async (req, res) => {
 
 module.exports = {
   getAllRecords,
+  getInfo
   // createRecord,
   // updateRecord,
   // deleteRecord,

@@ -5,38 +5,30 @@ import { UserContext } from "../context/user-context";
 import axios from "axios";
 import { apiUrl } from "../../utils/util";
 import { toast } from "react-toastify";
-import Card from "../components/dashboard/card";
-import Cart from "../components/dashboard/cart";
+import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
+import { TbPointFilled } from "react-icons/tb";
 import LastRecord from "../components/dashboard/lastrecords";
-import Chart from "../components/dashboard/chatrs";
-import { FaCircleArrowUp } from "react-icons/fa6";
-import { FaCircleArrowDown } from "react-icons/fa6";
 import MonthChart from "../components/dashboard/montchart";
 
-const Cardinfo = [
-  {
-    color: "text-[#84CC16]",
-    sumAmount: "1,400,000₮",
-    incomeAmount: "Your Income Amount",
-    arrow: <FaCircleArrowUp className="text-lime-500" />,
-    change: "32% from last month",
-  },
-  {
-    color: "text-[#0166FF]",
-    sumAmount: "1,400,000₮",
-    incomeAmount: "Your Expence Amount",
-    arrow: <FaCircleArrowDown className="text-[#0166FF]" />,
-    change: "32% from last month",
-  },
-];
+import {
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  Chart,
+  Legend,
+  LinearScale,
+} from "chart.js";
+import DoughnurChart from "../components/dashboard/Doughnut";
+Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Legend);
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
   const [transactions, setTransactions] = useState([]);
+  const [cartinfo, setCartinfo] = useState(null);
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get(`${apiUrl}/records/${uid}`);
+      const res = await axios.get(`${apiUrl}/records`);
       console.log("guilgee", res.data.records);
       setTransactions(res.data.records);
     } catch (error) {
@@ -45,50 +37,80 @@ const Dashboard = () => {
     }
   };
 
-  useEffect(() => {
-    if (user && user.id) {
-      fetchTransactions();
+  const getInfoCartdata = async () => {
+    try {
+      const res = await axios.get(`${apiUrl}/records/info`);
+      console.log("st", res.data);
+      setCartinfo(res.data);
+    } catch (error) {
+      toast.error("Cardinfo failed");
     }
-  }, [user.id]);
+  };
 
   // useEffect(() => {
-  //   fetchTransactions();
-  // }, [user]);
+  //   if (user && user.id) {
+  //     fetchTransactions();
+  //   }
+  // }, [user.id]);
+
+  useEffect(() => {
+    getInfoCartdata();
+    fetchTransactions();
+  }, [user]);
 
   return (
     <div className="w-[100%] h-full m-auto bg-slate-200">
-      <div className="flex  justify-between px-10 py-10">
-        <Cart />
-        {Cardinfo.map((a) => (
-          <Card
-            color={a.color}
-            sumAmount={a.sumAmount}
-            incomeAmount={a.incomeAmount}
-            arrow={a.arrow}
-            change={a.change}
-          />
-        ))}
-
-        {/* {transactionData?.transactions?.map((transaction, index) => {
-          return (
-            <div key={index} className="flex">
-              <img src="/income.svg" alt="income" />
-              <div>
-                <p className="mb-1">{transaction?.name}</p>
-                <p className="text-[#6B7280]">{transaction?.createdat}</p>
-              </div>
+      <div className="container grid grid-cols-3 gap-10 m-auto py-10">
+        <div className="relative w-full shadow-xl card bg-base-100">
+          {/* <img src="/images/Large.png" alt="Shoes" /> */}
+          <div className="absolute items-end justify-end text-lg text-black card-body bottom-1 ">
+            <h3 className="">CASH</h3>
+            <p>11,250,657.89</p>
+          </div>
+        </div>
+        <div className="w-full p-0 shadow-xl card bg-base-100">
+          <div className="flex flex-col gap-5 card-body ">
+            <div className="flex items-center border-b-2 ">
+              <TbPointFilled color="green" />
+              <h2 className="card-title ">Your Income </h2>
             </div>
-          );
-        })} */}
+            <h1 className="text-3xl font-semibold">{cartinfo?.income.sum}</h1>
+            <span className="opacity-50">Your Income Account</span>
+            <div className="flex items-end ">
+              <FaArrowAltCircleUp color="green" size={20} className="mr-2" />
+              <span>32&#37; from last month</span>
+            </div>
+          </div>
+        </div>
+        {/* INC */}
+        {/* EXP */}
+        <div className="w-full shadow-xl card bg-base-100 ">
+          <div className="flex flex-col gap-5 card-body ">
+            <div className="flex items-center border-b-2">
+              <TbPointFilled color="blue" />
+              <h2 className="mb-2 card-title ">Total expenses </h2>
+            </div>
+            <h1 className="text-3xl font-semibold">{cartinfo?.expense.sum}</h1>
+            <span className="opacity-50">Your Income Account</span>
+            <div className="flex items-end ">
+              <FaArrowAltCircleDown color="green" size={20} className="mr-2" />
+              <span>32&#37; from last month</span>
+            </div>
+          </div>
+        </div>
       </div>
+      {/* {/chars/} */}
       <div className="w-[88%] m-auto  py-10">
         <div className=" w-[100%] h-[400px]  border rounded-lg bg-white flex justify-between">
           <MonthChart />
-          <Chart />
+          <DoughnurChart />
         </div>
         <div className="justify-center py-10">
           {transactions.map((tr) => (
-            <div>{tr.name}</div>
+            <div className="flex justify-between">
+              {tr.name}
+              <div className="">{tr.amount}</div>
+            </div>
           ))}
         </div>
       </div>
