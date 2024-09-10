@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Modal from "../components/records/modal";
+import Modal from "../../components/records/modal";
 const RecordPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 

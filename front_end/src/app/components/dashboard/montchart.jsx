@@ -10,7 +10,6 @@ import {
   Legend,
 } from "chart.js";
 
-// Chart.js бүртгүүлэх
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -20,17 +19,16 @@ ChartJS.register(
   Legend
 );
 
-const MonthChart = () => {
-  // 1 сарын мэдээллийг тохируулах
+const MonthChart = ({ cartinfo }) => {
+  // const data2 = cartinfo?.map((b) => b.expense.sum);
+  console.log("data", cartinfo);
   const data = {
     labels: ["1 сар"],
     datasets: [
       {
         label: "Орлого (₮)",
-        data: [
-          1200, 1500, 1000, 2000, 2300, 1800, 2500, 2700, 2400, 3000, 3200,
-          2800,
-        ],
+        data: "",
+
         backgroundColor: "rgba(75, 192, 192, 0.6)",
       },
       {

@@ -1,14 +1,18 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/user-context";
+import { GoHomeFill, GoDotFill } from "react-icons/go";
+import { PiContactlessPaymentFill } from "react-icons/pi";
+import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
+
 import axios from "axios";
-import { apiUrl } from "../../utils/util";
+
 import { toast } from "react-toastify";
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
-import LastRecord from "../components/dashboard/lastrecords";
-import MonthChart from "../components/dashboard/montchart";
+import LastRecord from "../../components/dashboard/lastrecords";
+
+import MonthChart from "../../components/dashboard/montchart";
 
 import {
   ArcElement,
@@ -18,7 +22,9 @@ import {
   Legend,
   LinearScale,
 } from "chart.js";
-import DoughnurChart from "../components/dashboard/Doughnut";
+import DoughnurChart from "../../components/dashboard/Doughnut";
+import { UserContext } from "../../context/user-context";
+import { apiUrl } from "../../../utils/util";
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Legend);
 
 const Dashboard = () => {
@@ -102,20 +108,12 @@ const Dashboard = () => {
       {/* {/chars/} */}
       <div className="w-[88%] m-auto  py-10">
         <div className=" w-[100%] h-[400px]  border rounded-lg bg-white flex justify-between">
-          <MonthChart />
-          <DoughnurChart />
-        </div>
-        <div className="justify-center py-10">
-          {transactions.map((tr) => (
-            <div className="flex justify-between">
-              {tr.name}
-              <div className="">{tr.amount}</div>
-            </div>
-          ))}
+          <MonthChart cartinfo={cartinfo} />
+          <DoughnurChart transactions={transactions} />
         </div>
       </div>
       <div className=" px-10">
-        <LastRecord />
+        <LastRecord transactions={transactions} />
       </div>
     </div>
   );
