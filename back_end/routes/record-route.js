@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const {
   getAllRecords,
-  getInfo
+  getInfo,
+  getChartData
   // createRecord,
   // updateRecord,
   // deleteRecord,
@@ -10,6 +11,7 @@ const {
 const router = Router();
 
 router.route("/info").get(getInfo)
+router.route("/chart").get(getChartData)
 router.route("/").get(getAllRecords)
 // .post(createRecord);
 // router.route("/:id").put(updateRecord).delete(deleteRecord);

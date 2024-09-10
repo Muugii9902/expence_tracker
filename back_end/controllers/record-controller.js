@@ -21,6 +21,28 @@ const getInfo = async (req,res)=>{
     
   }
 }
+
+const getChartData = async (req,res)=>{
+  try {
+    const donutChartData= await 
+    sql`SELECT SUM(r.amount) ,c.name cat_name FROM records r INNER JOIN 
+       categories c ON r.cid=c.id
+       WHERE r.transaction_type='EXP'
+       GROUP BY cat_name;`;
+       const barChartData= await sql`
+       
+       SELECT TO_CHAR(DATE_TRUNC('month', r.createdat), 'Mon') as sar, 
+       SUM(CASE WHEN r.transaction_type = 'EXP' THEN r.amount ELSE 0 END) as total_exp,
+       SUM(CASE WHEN r.transaction_type = 'INC' THEN r.amount ELSE 0 END) as total_inc
+       FROM records r
+       GROUP BY DATE_TRUNC('month', r.createdat) 
+      ORDER BY DATE_TRUNC('month', r.createdat)`;
+    res.status(200).json({donut:donutChartData,bar:barChartData});
+  } catch (error) {
+    res.status(400).json({message:"failed",error})
+    
+  }
+}
  
 // const createRecord = async (req, res) => {
 //   const { name, amount, transaction_type, description } = req.body;
@@ -84,7 +106,8 @@ const getInfo = async (req,res)=>{
 
 module.exports = {
   getAllRecords,
-  getInfo
+  getInfo,
+  getChartData
   // createRecord,
   // updateRecord,
   // deleteRecord,

@@ -31,6 +31,9 @@ const Dashboard = () => {
   const { user } = useContext(UserContext);
   const [transactions, setTransactions] = useState([]);
   const [cartinfo, setCartinfo] = useState(null);
+  const [Chartinfo, setChartinfo] = useState(null);
+  const [donutChartData, setDonutChartData] = useState(null);
+  const [barChartData, setBarChartData] = useState(null);
 
   const fetchTransactions = async () => {
     try {
@@ -53,6 +56,20 @@ const Dashboard = () => {
     }
   };
 
+  const getChartData = async () => {
+    try {
+      const res = await axios.get(`${apiUrl}/records/chart`);
+      setChartinfo(res.data);
+      console.log("chartdataaa", res.data);
+      setDonutChartData(res.data.donut);
+      console.log("donuttttt", res.data.donut);
+      setBarChartData(res.data.bar);
+      console.log("baaar", res.data.bar);
+    } catch (error) {
+      toast.error("chartdata failed");
+    }
+  };
+
   // useEffect(() => {
   //   if (user && user.id) {
   //     fetchTransactions();
@@ -62,6 +79,7 @@ const Dashboard = () => {
   useEffect(() => {
     getInfoCartdata();
     fetchTransactions();
+    getChartData();
   }, [user]);
 
   return (
@@ -108,8 +126,8 @@ const Dashboard = () => {
       {/* {/chars/} */}
       <div className="w-[88%] m-auto  py-10">
         <div className=" w-[100%] h-[400px]  border rounded-lg bg-white flex justify-between">
-          <MonthChart cartinfo={cartinfo} />
-          <DoughnurChart transactions={transactions} />
+          <MonthChart data={barChartData} />
+          <DoughnurChart data={donutChartData} />
         </div>
       </div>
       <div className=" px-10">

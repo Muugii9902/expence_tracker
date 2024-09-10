@@ -1,7 +1,8 @@
 import { Doughnut } from "react-chartjs-2";
 
-const DoughnurChart = ({ transactions }) => {
-  const names = transactions.map((a) => a.amount);
+const DoughnurChart = ({ donutChartData }) => {
+  const names = donutChartData?.map((a) => a.sum);
+  const labels = donutChartData?.map((a) => a.cat.name);
   const data2 = {
     datasets: [
       {
@@ -23,7 +24,7 @@ const DoughnurChart = ({ transactions }) => {
         ],
       },
     ],
-    labels: transactions.map((a) => a.name),
+    labels: labels,
   };
 
   const options2 = {
