@@ -2,7 +2,7 @@ import { Doughnut } from "react-chartjs-2";
 
 const DoughnurChart = ({ donutChartData }) => {
   const names = donutChartData?.map((a) => a.sum);
-  const labels = donutChartData?.map((a) => a.cat.name);
+  const labels = donutChartData?.map((a) => a.cat_name);
   const data2 = {
     datasets: [
       {

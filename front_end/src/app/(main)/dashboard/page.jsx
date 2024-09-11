@@ -126,8 +126,8 @@ const Dashboard = () => {
       {/* {/chars/} */}
       <div className="w-[88%] m-auto  py-10">
         <div className=" w-[100%] h-[400px]  border rounded-lg bg-white flex justify-between">
-          <MonthChart data={barChartData} />
-          <DoughnurChart data={donutChartData} />
+          <MonthChart barChartData={barChartData} />
+          <DoughnurChart donutChartData={donutChartData} />
         </div>
       </div>
       <div className=" px-10">

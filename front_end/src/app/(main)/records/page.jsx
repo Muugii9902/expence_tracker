@@ -1,42 +1,41 @@
 "use client";
+import { SideBar } from "../../components/records/sidebar";
+import { RecordCard } from "../../components/records/record-card";
+import { ArrowRight } from "../../../icons/ArrowRight";
+import { ArrowLeft } from "../../../icons/ArrowLeft";
 
-import React, { useState } from "react";
-import Modal from "../../components/records/modal";
 const RecordPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   return (
-    <div className="bg-slate-200 pt-8">
-      <div className="w-[88%] px-10 flex gap-6">
-        <div className="bg-slate-50 rounded-2xl py-5 px-5 artboard phone-4">
-          <div>
-            <h1 className="text-2xl font-bold">Records</h1>
-            <div className="flex justify-center py-5">
-              <button
-                className="btn btn-active w-[250px] h-[32px] btn-primary"
-                onClick={openModal}
-              >
-                +ADD
-              </button>
-            </div>
-            <div className="flex justify-center py-5">
-              <input
-                type="text"
-                placeholder="Search"
-                className="grow w-[250px] h-[32px]"
-              />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold">Types</h1>
-            </div>
+    <div className="max-w-[1200px] mx-auto py-8 flex gap-8">
+      <SideBar />
+      <section>
+        <div className="mb-6">
+          <div className="flex items-center gap-3">
+            <button className="btn btn-square bg-[#E5E7EB]">
+              <ArrowRight />
+            </button>
+            <p>Last 30 Days</p>
+            <button className="btn btn-square bg-[#E5E7EB]">
+              <ArrowLeft />
+            </button>
           </div>
         </div>
-      </div>
-
-      <Modal isOpen={isModalOpen} onClose={closeModal} />
+        <div>
+          <h2 className="mb-3">Today</h2>
+          <div className="flex flex-col gap-4">
+            <RecordCard
+              recordName="Lend"
+              recordDate="2024"
+              recordAmount={100}
+            />
+            <RecordCard
+              recordName="Rent"
+              recordDate="2024"
+              recordAmount={100}
+            />
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

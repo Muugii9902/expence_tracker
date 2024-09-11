@@ -19,21 +19,22 @@ ChartJS.register(
   Legend
 );
 
-const MonthChart = ({ cartinfo }) => {
-  // const data2 = cartinfo?.map((b) => b.expense.sum);
-  console.log("data", cartinfo);
+const MonthChart = ({ barChartData }) => {
+  const labels = barChartData?.map((a) => a.sar);
+  const inc = barChartData?.map((a) => a.total_inc);
+  const exp = barChartData?.map((a) => a.total_exp);
   const data = {
-    labels: ["1 сар"],
+    labels: labels,
     datasets: [
       {
         label: "Орлого (₮)",
-        data: "",
+        data: inc,
 
         backgroundColor: "rgba(75, 192, 192, 0.6)",
       },
       {
         label: "Зардал",
-        data: 9000,
+        data: exp,
         backgroundColor: "#F87171",
       },
     ],
