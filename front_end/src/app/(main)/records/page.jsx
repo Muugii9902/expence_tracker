@@ -1,8 +1,7 @@
-"use client";
 import { SideBar } from "../../components/records/sidebar";
 import { RecordCard } from "../../components/records/record-card";
-import { ArrowRight } from "../../../icons/ArrowRight";
-import { ArrowLeft } from "../../../icons/ArrowLeft";
+
+import { ArrowRight, ArrowLeft } from "../../../icons";
 
 const RecordPage = () => {
   return (

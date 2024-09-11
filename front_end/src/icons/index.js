@@ -1,4 +1,4 @@
-export * from "/PlusIcon"
+export * from "./Plusicon"
 export * from "./EyeIcon"
 export * from "./ArrowLeft"
 export * from "./ArrowRight"

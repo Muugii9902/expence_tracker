@@ -1,6 +1,6 @@
 "use client";
 
-import { PlusIcon, EyeIcon } from "../../../icons/plusicon";
+import { PlusIcon, EyeIcon } from "../../../icons/Plusicon";
 import { RecordModal } from "../records/record-card";
 import { useState } from "react";
 import { CategoryModal } from "../records/category-modal";
