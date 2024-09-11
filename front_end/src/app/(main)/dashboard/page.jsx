@@ -124,13 +124,15 @@ const Dashboard = () => {
         </div>
       </div>
       {/* {/chars/} */}
-      <div className="w-[88%] m-auto  py-10">
-        <div className=" w-[100%] h-[400px]  border rounded-lg bg-white flex justify-between">
+      <div className="grid grid-cols-2 container m-auto gap-6">
+        <div className=" h-[285px] border rounded-lg bg-white ">
           <MonthChart barChartData={barChartData} />
+        </div>
+        <div className=" h-[285px] border rounded-lg bg-white ">
           <DoughnurChart donutChartData={donutChartData} />
         </div>
       </div>
-      <div className=" px-10">
+      <div className=" py-36 px-10">
         <LastRecord transactions={transactions} />
       </div>
     </div>
