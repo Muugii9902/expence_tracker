@@ -8,10 +8,11 @@ import { UserContext } from "../../context/user-context";
 
 const RecordPage = () => {
   const { user, transactions, Catecories } = useContext(UserContext);
+
   console.log("transaction", transactions);
   return (
     <div className="max-w-[1600px] mx-auto py-8 flex gap-16">
-      <SideBar Catecories={Catecories} />
+      <SideBar />
       <section>
         <div className="mb-6">
           <div className="flex items-center gap-3">

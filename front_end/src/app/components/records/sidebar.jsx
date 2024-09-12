@@ -2,8 +2,9 @@
 
 import { PlusIcon, EyeIcon } from "../../../icons";
 import { RecordModal } from "./modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CategoryModal } from "./category-modal";
+import { RecordContext } from "../../context/record-context";
 
 export const SideBar = () => {
   return (
@@ -73,8 +74,9 @@ export const RecordTypes = () => {
   );
 };
 
-export const RecordCategories = ({ Catecories }) => {
+export const RecordCategories = ({}) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
+  const { Catecories } = useContext(RecordContext);
 
   const handleClose = () => {
     setCategoryOpen(false);
