@@ -1,12 +1,17 @@
-import { SideBar } from "../../components/records/sidebar";
-import { RecordCard } from "../../components/records/record-card";
-
+// import { SideBar } from "../../components/records/sidebar";
+// import { RecordCard } from "../../components/records/record-card";
+"use client";
+import { useContext } from "react";
 import { ArrowRight, ArrowLeft } from "../../../icons";
+import { SideBar, RecordCard } from "../../components/records";
+import { UserContext } from "../../context/user-context";
 
 const RecordPage = () => {
+  const { user, transactions, Catecories } = useContext(UserContext);
+  console.log("transaction", transactions);
   return (
-    <div className="max-w-[1200px] mx-auto py-8 flex gap-8">
-      <SideBar />
+    <div className="max-w-[1600px] mx-auto py-8 flex gap-16">
+      <SideBar Catecories={Catecories} />
       <section>
         <div className="mb-6">
           <div className="flex items-center gap-3">
@@ -22,16 +27,8 @@ const RecordPage = () => {
         <div>
           <h2 className="mb-3">Today</h2>
           <div className="flex flex-col gap-4">
-            <RecordCard
-              recordName="Lend"
-              recordDate="2024"
-              recordAmount={100}
-            />
-            <RecordCard
-              recordName="Rent"
-              recordDate="2024"
-              recordAmount={100}
-            />
+            <RecordCard transactions={transactions} />
+            <RecordCard />
           </div>
         </div>
       </section>

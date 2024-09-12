@@ -1,13 +1,13 @@
 "use client";
 
-import { PlusIcon, EyeIcon } from "../../../icons/Plusicon";
-import { RecordModal } from "../records/record-card";
+import { PlusIcon, EyeIcon } from "../../../icons";
+import { RecordModal } from "./modal";
 import { useState } from "react";
-import { CategoryModal } from "../records/category-modal";
+import { CategoryModal } from "./category-modal";
 
 export const SideBar = () => {
   return (
-    <aside className="flex flex-col w-[250px] bg-white border border-[#E5E7EB] p-5 rounded-xl gap-4">
+    <aside className="flex flex-col w-[200px] bg-white border border-[#E5E7EB] p-5 rounded-xl gap-4">
       <AddRecord />
       <RecordTypes />
       <RecordCategories />
@@ -73,7 +73,7 @@ export const RecordTypes = () => {
   );
 };
 
-export const RecordCategories = () => {
+export const RecordCategories = ({ Catecories }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
 
   const handleClose = () => {
@@ -82,20 +82,24 @@ export const RecordCategories = () => {
 
   return (
     <div>
-      <div className="mb-3 flex justify-between">
-        <h3 className="font-semibold ">Category</h3>
-        <h4 className="text-xs text-gray-400">Clear</h4>
-      </div>
-      <div>
-        <div className="flex items-center gap-2 mb-2">
-          <EyeIcon />
-          <p>Food & Drinks</p>
+      {Catecories.map((a) => (
+        <div>
+          <div className="mb-3 flex justify-between">
+            <h3 className="font-semibold ">Category</h3>
+            <h4 className="text-xs text-gray-400">Clear</h4>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <EyeIcon />
+              <p>{a.name}</p>
+            </div>
+            <div className="flex items-center gap-2 mb-2">
+              <EyeIcon />
+              <p>Shopping</p>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2 mb-2">
-          <EyeIcon />
-          <p>Shopping</p>
-        </div>
-      </div>
+      ))}
       <button
         className="btn btn-ghost btn-sm font-light p-1 mt-3"
         onClick={() => setCategoryOpen(true)}
