@@ -15,7 +15,7 @@ export const DashboardProvider = ({ children }) => {
       setChartData({ donut: res.data.donut, bar: res.data.bar });
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch transactions");
+      // toast.error("Failed to fetch transactions");
     }
   };
 

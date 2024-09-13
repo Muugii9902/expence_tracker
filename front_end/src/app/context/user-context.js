@@ -33,25 +33,25 @@ export const UserProvider = ({ children }) => {
       console.error("Error fetching user data:", error);
     }
   };
-  const getCategories = async () => {
-    console.log("cat name ========>");
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(`${apiUrl}/categories`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // const getCategories = async () => {
+  //   console.log("cat name ========>");
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const response = await axios.get(`${apiUrl}/categories`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      if (response.status === 200) {
-        console.log("category", response.data);
-        setCategories(response.data.categories);
-      }
-    } catch (error) {
-      console.log("CAT-NAME", error);
-      toast.error("Failed to fetch category names");
-    }
-  };
+  //     if (response.status === 200) {
+  //       console.log("cat", response.data.Catecories);
+  //       setCategories(response.data.categories);
+  //     }
+  //   } catch (error) {
+  //     console.log("CAT-NAME", error);
+  //     toast.error("Failed to fetch category names");
+  //   }
+  // };
 
   const fetchTransactions = async () => {
     try {
@@ -65,7 +65,7 @@ export const UserProvider = ({ children }) => {
   };
   useEffect(() => {
     fetchTransactions();
-    getCategories();
+    // getCategories();
   }, [user]);
 
   return (

@@ -76,7 +76,8 @@ export const RecordTypes = () => {
 
 export const RecordCategories = ({}) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
-  const { Catecories } = useContext(RecordContext);
+  const { Categories } = useContext(RecordContext);
+  console.log("name===>", Categories);
 
   const handleClose = () => {
     setCategoryOpen(false);
@@ -84,24 +85,20 @@ export const RecordCategories = ({}) => {
 
   return (
     <div>
-      {Catecories.map((a) => (
+      <div>
+        <div className="mb-3 flex justify-between">
+          <h3 className="font-semibold ">Category</h3>
+          <h4 className="text-xs text-gray-400">Clear</h4>
+        </div>
         <div>
-          <div className="mb-3 flex justify-between">
-            <h3 className="font-semibold ">Category</h3>
-            <h4 className="text-xs text-gray-400">Clear</h4>
-          </div>
-          <div>
+          {Categories?.map((a) => (
             <div className="flex items-center gap-2 mb-2">
               <EyeIcon />
               <p>{a.name}</p>
             </div>
-            <div className="flex items-center gap-2 mb-2">
-              <EyeIcon />
-              <p>Shopping</p>
-            </div>
-          </div>
+          ))}
         </div>
-      ))}
+      </div>
       <button
         className="btn btn-ghost btn-sm font-light p-1 mt-3"
         onClick={() => setCategoryOpen(true)}

@@ -1,25 +1,29 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
+import { apiUrl } from "../../utils/util";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export const RecordContext = createContext();
 
 export const RecordProvider = ({ children }) => {
-  const [Categories, setCategories] = useState([null]);
+  const [Categories, setCategories] = useState([]);
 
   const getCategories = async () => {
-    console.log("cat name ========>");
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`${apiUrl}/categories`, {
+      const res = await axios.get(`${apiUrl}/categories`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      if (response.status === 200) {
-        console.log("category", response.data);
-        setCategories(response.data.categories);
+      if (res.status === 200) {
+        console.log("category", res.data.categories);
+        setCategories(res.data.categories);
+        // console.log("categoryyyyyyy", res.data.Categories);
+        toast.success("category names");
       }
     } catch (error) {
       console.log("CAT-NAME", error);

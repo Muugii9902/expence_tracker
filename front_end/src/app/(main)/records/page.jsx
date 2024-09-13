@@ -5,9 +5,10 @@ import { useContext } from "react";
 import { ArrowRight, ArrowLeft } from "../../../icons";
 import { SideBar, RecordCard } from "../../components/records";
 import { UserContext } from "../../context/user-context";
+import { RecordContext } from "../../context/record-context";
 
 const RecordPage = () => {
-  const { user, transactions, Catecories } = useContext(UserContext);
+  const { user, transactions } = useContext(UserContext);
 
   console.log("transaction", transactions);
   return (
