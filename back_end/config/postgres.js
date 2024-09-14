@@ -1,10 +1,13 @@
 const postgres = require("postgres");
+require("dotenv").config();
+
+let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
 const sql = postgres({
-  host: "GHOST",
-  database: "PGDATABASE",
-  username: "PGUSER",
-  password: "PGPASSWORD",
+  host: PGHOST,
+  database: PGDATABASE,
+  username: PGUSER,
+  password: PGPASSWORD,
   port: 5432,
   ssl: "require",
   connection: {
