@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { RecordContext } from "../../context/record-context";
 
 export const RecordModal = ({ isOpen, close }) => {
   return (
@@ -26,6 +27,7 @@ export const RecordModal = ({ isOpen, close }) => {
 
 export const RightSide = () => {
   const [activeTab, setActiveTab] = useState("INC");
+  const { Categories } = useContext(RecordContext);
 
   return (
     <div className="w-2/5">
@@ -63,10 +65,9 @@ export const RightSide = () => {
             <option disabled selected>
               Choose
             </option>
-            <option value="food">Food</option>
-            <option value="drink">Drink</option>
-            <option value="rent">Rent</option>
-            <option value="other">Other</option>
+            {Categories.map((data) => {
+              return <option value={data.id}>{data.name}</option>;
+            })}
           </select>
         </div>
         <div className="flex gap-3">
